@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="HardwareStores" EntityType="Model1.Store.HardwareStores" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Branches" EntityType="Model1.Store.Branches" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Departments" EntityType="Model1.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Trucks" EntityType="Model1.Store.Trucks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Model1.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Shelves" EntityType="Model1.Store.Shelves" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="Model1.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Brands" EntityType="Model1.Store.Brands" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pictures" EntityType="Model1.Store.Pictures" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Features" EntityType="Model1.Store.Features" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Aisles" EntityType="Model1.Store.Aisles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Orders" EntityType="Model1.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Deliveries" EntityType="Model1.Store.Deliveries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PreOrders" EntityType="Model1.Store.PreOrders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Routes" EntityType="Model1.Store.Routes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Warnings" EntityType="Model1.Store.Warnings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users_Employee" EntityType="Model1.Store.Users_Employee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users_Client" EntityType="Model1.Store.Users_Client" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderProduct" EntityType="Model1.Store.OrderProduct" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductPreOrder" EntityType="Model1.Store.ProductPreOrder" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="BranchDepartment" Association="Model1.Store.BranchDepartment">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="HardwareStoreBranch" Association="Model1.Store.HardwareStoreBranch">
+      <End Role="HardwareStore" EntitySet="HardwareStores" />
+      <End Role="Branch" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeTruck" Association="Model1.Store.EmployeeTruck">
+      <End Role="Employee" EntitySet="Users_Employee" />
+      <End Role="Truck" EntitySet="Trucks" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeDepartment" Association="Model1.Store.EmployeeDepartment">
+      <End Role="Employee" EntitySet="Users_Employee" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="ShelfProduct" Association="Model1.Store.ShelfProduct">
+      <End Role="Shelf" EntitySet="Shelves" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="ProductBrand" Association="Model1.Store.ProductBrand">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Brand" EntitySet="Brands" />
+    </AssociationSet>
+    <AssociationSet Name="ProductPicture" Association="Model1.Store.ProductPicture">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Picture" EntitySet="Pictures" />
+    </AssociationSet>
+    <AssociationSet Name="ProductFeature" Association="Model1.Store.ProductFeature">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Feature" EntitySet="Features" />
+    </AssociationSet>
+    <AssociationSet Name="DepartmentAisle" Association="Model1.Store.DepartmentAisle">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Aisle" EntitySet="Aisles" />
+    </AssociationSet>
+    <AssociationSet Name="AisleShelf" Association="Model1.Store.AisleShelf">
+      <End Role="Aisle" EntitySet="Aisles" />
+      <End Role="Shelf" EntitySet="Shelves" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_Order" Association="Model1.Store.FK_OrderProduct_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderProduct" EntitySet="OrderProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_Product" Association="Model1.Store.FK_OrderProduct_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderProduct" EntitySet="OrderProduct" />
+    </AssociationSet>
+    <AssociationSet Name="ClientOrder" Association="Model1.Store.ClientOrder">
+      <End Role="Client" EntitySet="Users_Client" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPreOrder_Product" Association="Model1.Store.FK_ProductPreOrder_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductPreOrder" EntitySet="ProductPreOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPreOrder_PreOrder" Association="Model1.Store.FK_ProductPreOrder_PreOrder">
+      <End Role="PreOrder" EntitySet="PreOrders" />
+      <End Role="ProductPreOrder" EntitySet="ProductPreOrder" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeePreOrder" Association="Model1.Store.EmployeePreOrder">
+      <End Role="Employee" EntitySet="Users_Employee" />
+      <End Role="PreOrder" EntitySet="PreOrders" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeOrder" Association="Model1.Store.EmployeeOrder">
+      <End Role="Employee" EntitySet="Users_Employee" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="OrderDelivery" Association="Model1.Store.OrderDelivery">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Delivery" EntitySet="Deliveries" />
+    </AssociationSet>
+    <AssociationSet Name="RouteDelivery" Association="Model1.Store.RouteDelivery">
+      <End Role="Route" EntitySet="Routes" />
+      <End Role="Delivery" EntitySet="Deliveries" />
+    </AssociationSet>
+    <AssociationSet Name="TruckRoute" Association="Model1.Store.TruckRoute">
+      <End Role="Truck" EntitySet="Trucks" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeWarning" Association="Model1.Store.EmployeeWarning">
+      <End Role="Employee" EntitySet="Users_Employee" />
+      <End Role="Warning" EntitySet="Warnings" />
+    </AssociationSet>
+    <AssociationSet Name="ClientPreOrder" Association="Model1.Store.ClientPreOrder">
+      <End Role="Client" EntitySet="Users_Client" />
+      <End Role="PreOrder" EntitySet="PreOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_inherits_User" Association="Model1.Store.FK_Employee_inherits_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Employee" EntitySet="Users_Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_inherits_User" Association="Model1.Store.FK_Client_inherits_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Client" EntitySet="Users_Client" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="HardwareStores">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneCentral" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Branches">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ServiceArea" Type="geography" Nullable="false" SRID="4326" />
+    <Property Name="AddressPoint" Type="geography" Nullable="false" SRID="4326" />
+    <Property Name="HardwareStore_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Branch_Id" Type="int" Nullable="false" />
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Trucks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlateNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WeightCapacity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Year" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mileage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FuelCapacity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shelves">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Aisle_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Use" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AmountAvailable" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" />
+    <Property Name="Shelf_Id" Type="int" Nullable="false" />
+    <Property Name="Brand_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Brands">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pictures">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="URL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Product_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Features">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Product_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Aisles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Department_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" />
+    <Property Name="ClientConfirm" Type="bit" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Deliveries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="geography" Nullable="false" SRID="4326" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Order_Id" Type="int" Nullable="false" />
+    <Property Name="Route_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PreOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" />
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Routes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Truck_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Warnings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="HireDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="YearlyVacationDays" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Address" Type="geography" Nullable="false" SRID="4326" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderProduct">
+    <Key>
+      <PropertyRef Name="Orders_Id" />
+      <PropertyRef Name="Products_Id" />
+    </Key>
+    <Property Name="Orders_Id" Type="int" Nullable="false" />
+    <Property Name="Products_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductPreOrder">
+    <Key>
+      <PropertyRef Name="Products_Id" />
+      <PropertyRef Name="PreOrders_Id" />
+    </Key>
+    <Property Name="Products_Id" Type="int" Nullable="false" />
+    <Property Name="PreOrders_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="BranchDepartment">
+    <End Role="Branch" Type="Model1.Store.Branches" Multiplicity="1" />
+    <End Role="Department" Type="Model1.Store.Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="Branch_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HardwareStoreBranch">
+    <End Role="HardwareStore" Type="Model1.Store.HardwareStores" Multiplicity="1" />
+    <End Role="Branch" Type="Model1.Store.Branches" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HardwareStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Branch">
+        <PropertyRef Name="HardwareStore_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeTruck">
+    <End Role="Employee" Type="Model1.Store.Users_Employee" Multiplicity="1" />
+    <End Role="Truck" Type="Model1.Store.Trucks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Truck">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeDepartment">
+    <End Role="Employee" Type="Model1.Store.Users_Employee" Multiplicity="1" />
+    <End Role="Department" Type="Model1.Store.Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ShelfProduct">
+    <End Role="Shelf" Type="Model1.Store.Shelves" Multiplicity="1" />
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shelf">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Shelf_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductBrand">
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="*" />
+    <End Role="Brand" Type="Model1.Store.Brands" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Brand_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductPicture">
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="1" />
+    <End Role="Picture" Type="Model1.Store.Pictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductFeature">
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="1" />
+    <End Role="Feature" Type="Model1.Store.Features" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feature">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DepartmentAisle">
+    <End Role="Department" Type="Model1.Store.Departments" Multiplicity="1" />
+    <End Role="Aisle" Type="Model1.Store.Aisles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aisle">
+        <PropertyRef Name="Department_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AisleShelf">
+    <End Role="Aisle" Type="Model1.Store.Aisles" Multiplicity="1" />
+    <End Role="Shelf" Type="Model1.Store.Shelves" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aisle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shelf">
+        <PropertyRef Name="Aisle_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientOrder">
+    <End Role="Client" Type="Model1.Store.Users_Client" Multiplicity="1" />
+    <End Role="Order" Type="Model1.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeePreOrder">
+    <End Role="Employee" Type="Model1.Store.Users_Employee" Multiplicity="1" />
+    <End Role="PreOrder" Type="Model1.Store.PreOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PreOrder">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeOrder">
+    <End Role="Employee" Type="Model1.Store.Users_Employee" Multiplicity="1" />
+    <End Role="Order" Type="Model1.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrderDelivery">
+    <End Role="Order" Type="Model1.Store.Orders" Multiplicity="1" />
+    <End Role="Delivery" Type="Model1.Store.Deliveries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RouteDelivery">
+    <End Role="Route" Type="Model1.Store.Routes" Multiplicity="1" />
+    <End Role="Delivery" Type="Model1.Store.Deliveries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Delivery">
+        <PropertyRef Name="Route_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TruckRoute">
+    <End Role="Truck" Type="Model1.Store.Trucks" Multiplicity="1" />
+    <End Role="Route" Type="Model1.Store.Routes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truck">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="Truck_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeWarning">
+    <End Role="Employee" Type="Model1.Store.Users_Employee" Multiplicity="1" />
+    <End Role="Warning" Type="Model1.Store.Warnings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Warning">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientPreOrder">
+    <End Role="Client" Type="Model1.Store.Users_Client" Multiplicity="1" />
+    <End Role="PreOrder" Type="Model1.Store.PreOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PreOrder">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_Order">
+    <End Role="Order" Type="Model1.Store.Orders" Multiplicity="1" />
+    <End Role="OrderProduct" Type="Model1.Store.OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="Orders_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_Product">
+    <End Role="OrderProduct" Type="Model1.Store.OrderProduct" Multiplicity="*" />
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="Products_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPreOrder_Product">
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="1" />
+    <End Role="ProductPreOrder" Type="Model1.Store.ProductPreOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductPreOrder">
+        <PropertyRef Name="Products_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPreOrder_PreOrder">
+    <End Role="ProductPreOrder" Type="Model1.Store.ProductPreOrder" Multiplicity="*" />
+    <End Role="PreOrder" Type="Model1.Store.PreOrders" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="PreOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductPreOrder">
+        <PropertyRef Name="PreOrders_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_inherits_User">
+    <End Role="User" Type="Model1.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Employee" Type="Model1.Store.Users_Employee" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_inherits_User">
+    <End Role="User" Type="Model1.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Client" Type="Model1.Store.Users_Client" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
