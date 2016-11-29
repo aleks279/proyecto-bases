@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/28/2016 11:58:47
+-- Date Created: 11/28/2016 21:32:55
 -- Generated from EDMX file: C:\Users\Saul\Documents\TEC\2016 - Semestre II\Bases de Datos II\Proyecto-Ferreteria\Proyecto_V4\Proyecto_V4\Models\Model1.edmx
 -- --------------------------------------------------
 
@@ -540,21 +540,6 @@ ON [dbo].[Products]
     ([Shelf_Id]);
 GO
 
--- Creating foreign key on [Brand_Id] in table 'Products'
-ALTER TABLE [dbo].[Products]
-ADD CONSTRAINT [FK_ProductBrand]
-    FOREIGN KEY ([Brand_Id])
-    REFERENCES [dbo].[Brands]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ProductBrand'
-CREATE INDEX [IX_FK_ProductBrand]
-ON [dbo].[Products]
-    ([Brand_Id]);
-GO
-
 -- Creating foreign key on [Product_Id] in table 'Pictures'
 ALTER TABLE [dbo].[Pictures]
 ADD CONSTRAINT [FK_ProductPicture]
@@ -781,6 +766,21 @@ GO
 CREATE INDEX [IX_FK_ClientPreOrder]
 ON [dbo].[PreOrders]
     ([Client_Id]);
+GO
+
+-- Creating foreign key on [Brand_Id] in table 'Products'
+ALTER TABLE [dbo].[Products]
+ADD CONSTRAINT [FK_BrandProduct]
+    FOREIGN KEY ([Brand_Id])
+    REFERENCES [dbo].[Brands]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BrandProduct'
+CREATE INDEX [IX_FK_BrandProduct]
+ON [dbo].[Products]
+    ([Brand_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Users_Employee'

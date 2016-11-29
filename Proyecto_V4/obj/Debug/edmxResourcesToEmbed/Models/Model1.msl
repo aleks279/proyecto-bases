@@ -201,14 +201,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ProductBrand" TypeName="Model1.ProductBrand" StoreEntitySet="Products">
-      <EndProperty Name="Brand">
-        <ScalarProperty Name="Id" ColumnName="Brand_Id" />
-      </EndProperty>
-      <EndProperty Name="Product">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="ProductPicture" TypeName="Model1.ProductPicture" StoreEntitySet="Pictures">
       <EndProperty Name="Product">
         <ScalarProperty Name="Id" ColumnName="Product_Id" />

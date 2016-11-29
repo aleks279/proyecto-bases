@@ -46,10 +46,6 @@
       <End Role="Shelf" EntitySet="Shelves" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="ProductBrand" Association="Model1.Store.ProductBrand">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="Brand" EntitySet="Brands" />
-    </AssociationSet>
     <AssociationSet Name="ProductPicture" Association="Model1.Store.ProductPicture">
       <End Role="Product" EntitySet="Products" />
       <End Role="Picture" EntitySet="Pictures" />
@@ -113,6 +109,10 @@
     <AssociationSet Name="ClientPreOrder" Association="Model1.Store.ClientPreOrder">
       <End Role="Client" EntitySet="Users_Client" />
       <End Role="PreOrder" EntitySet="PreOrders" />
+    </AssociationSet>
+    <AssociationSet Name="BrandProduct" Association="Model1.Store.BrandProduct">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Product" EntitySet="Products" />
     </AssociationSet>
     <AssociationSet Name="FK_Employee_inherits_User" Association="Model1.Store.FK_Employee_inherits_User">
       <End Role="User" EntitySet="Users" />
@@ -363,18 +363,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ProductBrand">
-    <End Role="Product" Type="Model1.Store.Products" Multiplicity="*" />
-    <End Role="Brand" Type="Model1.Store.Brands" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Brand">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Product">
-        <PropertyRef Name="Brand_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ProductPicture">
     <End Role="Product" Type="Model1.Store.Products" Multiplicity="1" />
     <End Role="Picture" Type="Model1.Store.Pictures" Multiplicity="*" />
@@ -519,6 +507,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="BrandProduct">
+    <End Role="Brand" Type="Model1.Store.Brands" Multiplicity="1" />
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Brand_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_OrderProduct_Order">
     <End Role="Order" Type="Model1.Store.Orders" Multiplicity="1" />
     <End Role="OrderProduct" Type="Model1.Store.OrderProduct" Multiplicity="*" />
@@ -628,10 +628,6 @@
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <EntitySet Name="Brands" EntityType="Model1.Brand" />
-          <AssociationSet Name="ProductBrand" Association="Model1.ProductBrand">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Brand" EntitySet="Brands" />
-          </AssociationSet>
           <EntitySet Name="Pictures" EntityType="Model1.Picture" />
           <AssociationSet Name="ProductPicture" Association="Model1.ProductPicture">
             <End Role="Product" EntitySet="Products" />
@@ -695,6 +691,10 @@
           <AssociationSet Name="ClientPreOrder" Association="Model1.ClientPreOrder">
             <End Role="Client" EntitySet="Users" />
             <End Role="PreOrder" EntitySet="PreOrders" />
+          </AssociationSet>
+          <AssociationSet Name="BrandProduct" Association="Model1.BrandProduct">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="HardwareStore">
@@ -800,11 +800,11 @@
           <Property Name="AmountAvailable" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="Shelf" Relationship="Model1.ShelfProduct" FromRole="Product" ToRole="Shelf" />
-          <NavigationProperty Name="Brand" Relationship="Model1.ProductBrand" FromRole="Product" ToRole="Brand" />
           <NavigationProperty Name="Pictures" Relationship="Model1.ProductPicture" FromRole="Product" ToRole="Picture" />
           <NavigationProperty Name="Features" Relationship="Model1.ProductFeature" FromRole="Product" ToRole="Feature" />
           <NavigationProperty Name="Orders" Relationship="Model1.OrderProduct" FromRole="Product" ToRole="Order" />
           <NavigationProperty Name="PreOrders" Relationship="Model1.ProductPreOrder" FromRole="Product" ToRole="PreOrder" />
+          <NavigationProperty Name="Brand" Relationship="Model1.BrandProduct" FromRole="Product" ToRole="Brand" />
         </EntityType>
         <Association Name="ShelfProduct">
           <End Type="Model1.Shelf" Role="Shelf" Multiplicity="1" />
@@ -816,12 +816,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Model1.ProductBrand" FromRole="Brand" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="Model1.BrandProduct" FromRole="Brand" ToRole="Product" />
         </EntityType>
-        <Association Name="ProductBrand">
-          <End Type="Model1.Product" Role="Product" Multiplicity="1" />
-          <End Type="Model1.Brand" Role="Brand" Multiplicity="1" />
-        </Association>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Id" />
@@ -954,6 +950,10 @@
         <Association Name="ClientPreOrder">
           <End Type="Model1.Client" Role="Client" Multiplicity="1" />
           <End Type="Model1.PreOrder" Role="PreOrder" Multiplicity="*" />
+        </Association>
+        <Association Name="BrandProduct">
+          <End Type="Model1.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="Model1.Product" Role="Product" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1161,14 +1161,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ProductBrand" TypeName="Model1.ProductBrand" StoreEntitySet="Products">
-      <EndProperty Name="Brand">
-        <ScalarProperty Name="Id" ColumnName="Brand_Id" />
-      </EndProperty>
-      <EndProperty Name="Product">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="ProductPicture" TypeName="Model1.ProductPicture" StoreEntitySet="Pictures">
       <EndProperty Name="Product">
         <ScalarProperty Name="Id" ColumnName="Product_Id" />
@@ -1281,6 +1273,14 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="BrandProduct" TypeName="Model1.BrandProduct" StoreEntitySet="Products">
+      <EndProperty Name="Brand">
+        <ScalarProperty Name="Id" ColumnName="Brand_Id" />
+      </EndProperty>
+      <EndProperty Name="Product">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1327,7 +1327,6 @@
         <AssociationConnector Association="Model1.EmployeeTruck" ManuallyRouted="false" />
         <AssociationConnector Association="Model1.EmployeeDepartment" ManuallyRouted="false" />
         <AssociationConnector Association="Model1.ShelfProduct" ManuallyRouted="false" />
-        <AssociationConnector Association="Model1.ProductBrand" ManuallyRouted="false" />
         <AssociationConnector Association="Model1.ProductPicture" ManuallyRouted="false" />
         <AssociationConnector Association="Model1.ProductFeature" ManuallyRouted="false" />
         <AssociationConnector Association="Model1.DepartmentAisle" ManuallyRouted="false" />
@@ -1342,6 +1341,7 @@
         <AssociationConnector Association="Model1.TruckRoute" ManuallyRouted="false" />
         <AssociationConnector Association="Model1.EmployeeWarning" ManuallyRouted="false" />
         <AssociationConnector Association="Model1.ClientPreOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.BrandProduct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

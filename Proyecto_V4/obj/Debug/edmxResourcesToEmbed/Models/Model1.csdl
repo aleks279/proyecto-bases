@@ -29,10 +29,6 @@
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
     <EntitySet Name="Brands" EntityType="Model1.Brand" />
-    <AssociationSet Name="ProductBrand" Association="Model1.ProductBrand">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="Brand" EntitySet="Brands" />
-    </AssociationSet>
     <EntitySet Name="Pictures" EntityType="Model1.Picture" />
     <AssociationSet Name="ProductPicture" Association="Model1.ProductPicture">
       <End Role="Product" EntitySet="Products" />
@@ -96,6 +92,10 @@
     <AssociationSet Name="ClientPreOrder" Association="Model1.ClientPreOrder">
       <End Role="Client" EntitySet="Users" />
       <End Role="PreOrder" EntitySet="PreOrders" />
+    </AssociationSet>
+    <AssociationSet Name="BrandProduct" Association="Model1.BrandProduct">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Product" EntitySet="Products" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="HardwareStore">
@@ -201,11 +201,11 @@
     <Property Name="AmountAvailable" Type="Int32" Nullable="false" />
     <Property Name="Price" Type="Decimal" Nullable="false" />
     <NavigationProperty Name="Shelf" Relationship="Model1.ShelfProduct" FromRole="Product" ToRole="Shelf" />
-    <NavigationProperty Name="Brand" Relationship="Model1.ProductBrand" FromRole="Product" ToRole="Brand" />
     <NavigationProperty Name="Pictures" Relationship="Model1.ProductPicture" FromRole="Product" ToRole="Picture" />
     <NavigationProperty Name="Features" Relationship="Model1.ProductFeature" FromRole="Product" ToRole="Feature" />
     <NavigationProperty Name="Orders" Relationship="Model1.OrderProduct" FromRole="Product" ToRole="Order" />
     <NavigationProperty Name="PreOrders" Relationship="Model1.ProductPreOrder" FromRole="Product" ToRole="PreOrder" />
+    <NavigationProperty Name="Brand" Relationship="Model1.BrandProduct" FromRole="Product" ToRole="Brand" />
   </EntityType>
   <Association Name="ShelfProduct">
     <End Type="Model1.Shelf" Role="Shelf" Multiplicity="1" />
@@ -217,12 +217,8 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Model1.ProductBrand" FromRole="Brand" ToRole="Product" />
+    <NavigationProperty Name="Products" Relationship="Model1.BrandProduct" FromRole="Brand" ToRole="Product" />
   </EntityType>
-  <Association Name="ProductBrand">
-    <End Type="Model1.Product" Role="Product" Multiplicity="1" />
-    <End Type="Model1.Brand" Role="Brand" Multiplicity="1" />
-  </Association>
   <EntityType Name="Picture">
     <Key>
       <PropertyRef Name="Id" />
@@ -355,5 +351,9 @@
   <Association Name="ClientPreOrder">
     <End Type="Model1.Client" Role="Client" Multiplicity="1" />
     <End Type="Model1.PreOrder" Role="PreOrder" Multiplicity="*" />
+  </Association>
+  <Association Name="BrandProduct">
+    <End Type="Model1.Brand" Role="Brand" Multiplicity="1" />
+    <End Type="Model1.Product" Role="Product" Multiplicity="*" />
   </Association>
 </Schema>

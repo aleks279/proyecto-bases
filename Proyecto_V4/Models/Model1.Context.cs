@@ -41,5 +41,9 @@ namespace Proyecto_V4.Models
         public virtual DbSet<PreOrder> PreOrders { get; set; }
         public virtual DbSet<Route> Routes { get; set; }
         public virtual DbSet<Warning> Warnings { get; set; }
+
+        public System.Data.Entity.DbSet<Proyecto_V4.Models.Client> Clients { get; set; }
+
+        public System.Data.Entity.DbSet<Proyecto_V4.Models.Employee> Employees { get; set; }
     }
 }
