@@ -313,5 +313,21 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="BrandProduct" TypeName="Model1.BrandProduct" StoreEntitySet="Products">
+      <EndProperty Name="Brand">
+        <ScalarProperty Name="Id" ColumnName="Brand_Id" />
+      </EndProperty>
+      <EndProperty Name="Product">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BranchEmployee" TypeName="Model1.BranchEmployee" StoreEntitySet="Users_Employee">
+      <EndProperty Name="Branch">
+        <ScalarProperty Name="Id" ColumnName="Branch_Id" />
+      </EndProperty>
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

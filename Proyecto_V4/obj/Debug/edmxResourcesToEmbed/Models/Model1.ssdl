@@ -41,10 +41,6 @@
       <End Role="Shelf" EntitySet="Shelves" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="ProductBrand" Association="Model1.Store.ProductBrand">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="Brand" EntitySet="Brands" />
-    </AssociationSet>
     <AssociationSet Name="ProductPicture" Association="Model1.Store.ProductPicture">
       <End Role="Product" EntitySet="Products" />
       <End Role="Picture" EntitySet="Pictures" />
@@ -108,6 +104,14 @@
     <AssociationSet Name="ClientPreOrder" Association="Model1.Store.ClientPreOrder">
       <End Role="Client" EntitySet="Users_Client" />
       <End Role="PreOrder" EntitySet="PreOrders" />
+    </AssociationSet>
+    <AssociationSet Name="BrandProduct" Association="Model1.Store.BrandProduct">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="BranchEmployee" Association="Model1.Store.BranchEmployee">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Employee" EntitySet="Users_Employee" />
     </AssociationSet>
     <AssociationSet Name="FK_Employee_inherits_User" Association="Model1.Store.FK_Employee_inherits_User">
       <End Role="User" EntitySet="Users" />
@@ -271,9 +275,10 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="HireDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HireDate" Type="datetime" Nullable="false" />
     <Property Name="YearlyVacationDays" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Branch_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users_Client">
     <Key>
@@ -355,18 +360,6 @@
       </Principal>
       <Dependent Role="Product">
         <PropertyRef Name="Shelf_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ProductBrand">
-    <End Role="Product" Type="Model1.Store.Products" Multiplicity="*" />
-    <End Role="Brand" Type="Model1.Store.Brands" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Brand">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Product">
-        <PropertyRef Name="Brand_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -511,6 +504,30 @@
       </Principal>
       <Dependent Role="PreOrder">
         <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BrandProduct">
+    <End Role="Brand" Type="Model1.Store.Brands" Multiplicity="1" />
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Brand_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BranchEmployee">
+    <End Role="Branch" Type="Model1.Store.Branches" Multiplicity="1" />
+    <End Role="Employee" Type="Model1.Store.Users_Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Branch_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

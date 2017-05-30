@@ -97,6 +97,10 @@
       <End Role="Brand" EntitySet="Brands" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
+    <AssociationSet Name="BranchEmployee" Association="Model1.BranchEmployee">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Employee" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="HardwareStore">
     <Key>
@@ -117,6 +121,7 @@
     <Property Name="AddressPoint" Type="Geography" Nullable="false" />
     <NavigationProperty Name="Departments" Relationship="Model1.BranchDepartment" FromRole="Branch" ToRole="Department" />
     <NavigationProperty Name="HardwareStore" Relationship="Model1.HardwareStoreBranch" FromRole="Branch" ToRole="HardwareStore" />
+    <NavigationProperty Name="Employees" Relationship="Model1.BranchEmployee" FromRole="Branch" ToRole="Employee" />
   </EntityType>
   <EntityType Name="Department">
     <Key>
@@ -161,13 +166,14 @@
     <Property Name="Phone" Type="String" Nullable="false" />
   </EntityType>
   <EntityType Name="Employee" BaseType="Model1.User">
-    <Property Name="HireDate" Type="String" Nullable="false" />
+    <Property Name="HireDate" Type="DateTime" Nullable="false" />
     <Property Name="YearlyVacationDays" Type="String" Nullable="false" />
     <NavigationProperty Name="Trucks" Relationship="Model1.EmployeeTruck" FromRole="Employee" ToRole="Truck" />
     <NavigationProperty Name="Departments" Relationship="Model1.EmployeeDepartment" FromRole="Employee" ToRole="Department" />
     <NavigationProperty Name="PreOrders" Relationship="Model1.EmployeePreOrder" FromRole="Employee" ToRole="PreOrder" />
     <NavigationProperty Name="Orders" Relationship="Model1.EmployeeOrder" FromRole="Employee" ToRole="Order" />
     <NavigationProperty Name="Warnings" Relationship="Model1.EmployeeWarning" FromRole="Employee" ToRole="Warning" />
+    <NavigationProperty Name="Branch" Relationship="Model1.BranchEmployee" FromRole="Employee" ToRole="Branch" />
   </EntityType>
   <Association Name="EmployeeTruck">
     <End Type="Model1.Employee" Role="Employee" Multiplicity="1" />
@@ -355,5 +361,9 @@
   <Association Name="BrandProduct">
     <End Type="Model1.Brand" Role="Brand" Multiplicity="1" />
     <End Type="Model1.Product" Role="Product" Multiplicity="*" />
+  </Association>
+  <Association Name="BranchEmployee">
+    <End Type="Model1.Branch" Role="Branch" Multiplicity="1" />
+    <End Type="Model1.Employee" Role="Employee" Multiplicity="*" />
   </Association>
 </Schema>

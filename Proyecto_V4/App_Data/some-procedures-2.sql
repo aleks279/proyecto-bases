@@ -34,15 +34,15 @@ begin
 		begin transaction
 			update Users_Employee
 			set YearlyVacationDays = YearlyVacationDays + 2
-			where year(HireDate - SYSDATETIME()) > 5 and year(HireDate - SYSDATETIME()) < 8
+			where year(HireDate - convert(datetime, SYSDATETIME())) > 5 and year(HireDate - convert(datetime, SYSDATETIME())) < 8
 
 			update Users_Employee
 			set YearlyVacationDays = YearlyVacationDays + 4
-			where year(HireDate - SYSDATETIME()) > 9 and year(HireDate - SYSDATETIME()) < 12
+			where year(HireDate - convert(datetime, SYSDATETIME())) > 9 and year(HireDate - convert(datetime, SYSDATETIME())) < 12
 
 			update Users_Employee
 			set YearlyVacationDays = YearlyVacationDays + 6
-			where year(HireDate - SYSDATETIME()) > 12
+			where year(HireDate - convert(datetime, SYSDATETIME())) > 12
 		commit transaction
 
 	end try

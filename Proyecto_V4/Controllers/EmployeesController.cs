@@ -46,7 +46,7 @@ namespace Proyecto_V4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HireDate,YearlyVacationDays,Name,Password,Email,Phone")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,Password,Email,Phone,HireDate,YearlyVacationDays")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Proyecto_V4.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HireDate,YearlyVacationDays,Name,Password,Email,Phone")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,Name,Password,Email,Phone,HireDate,YearlyVacationDays")] Employee employee)
         {
             if (ModelState.IsValid)
             {

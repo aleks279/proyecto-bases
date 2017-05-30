@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/28/2016 21:32:55
+-- Date Created: 11/30/2016 18:10:45
 -- Generated from EDMX file: C:\Users\Saul\Documents\TEC\2016 - Semestre II\Bases de Datos II\Proyecto-Ferreteria\Proyecto_V4\Proyecto_V4\Models\Model1.edmx
 -- --------------------------------------------------
 
@@ -31,9 +31,6 @@ IF OBJECT_ID(N'[dbo].[FK_EmployeeDepartment]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ShelfProduct]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Products] DROP CONSTRAINT [FK_ShelfProduct];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ProductBrand]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Products] DROP CONSTRAINT [FK_ProductBrand];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ProductPicture]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pictures] DROP CONSTRAINT [FK_ProductPicture];
@@ -82,6 +79,12 @@ IF OBJECT_ID(N'[dbo].[FK_EmployeeWarning]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ClientPreOrder]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PreOrders] DROP CONSTRAINT [FK_ClientPreOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BrandProduct]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Products] DROP CONSTRAINT [FK_BrandProduct];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BranchEmployee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users_Employee] DROP CONSTRAINT [FK_BranchEmployee];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Employee_inherits_User]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Users_Employee] DROP CONSTRAINT [FK_Employee_inherits_User];
@@ -310,9 +313,10 @@ GO
 
 -- Creating table 'Users_Employee'
 CREATE TABLE [dbo].[Users_Employee] (
-    [HireDate] nvarchar(max)  NOT NULL,
+    [HireDate] datetime  NOT NULL,
     [YearlyVacationDays] nvarchar(max)  NOT NULL,
-    [Id] int  NOT NULL
+    [Id] int  NOT NULL,
+    [Branch_Id] int  NOT NULL
 );
 GO
 
@@ -781,6 +785,21 @@ GO
 CREATE INDEX [IX_FK_BrandProduct]
 ON [dbo].[Products]
     ([Brand_Id]);
+GO
+
+-- Creating foreign key on [Branch_Id] in table 'Users_Employee'
+ALTER TABLE [dbo].[Users_Employee]
+ADD CONSTRAINT [FK_BranchEmployee]
+    FOREIGN KEY ([Branch_Id])
+    REFERENCES [dbo].[Branches]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BranchEmployee'
+CREATE INDEX [IX_FK_BranchEmployee]
+ON [dbo].[Users_Employee]
+    ([Branch_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Users_Employee'

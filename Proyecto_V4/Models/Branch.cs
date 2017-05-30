@@ -18,6 +18,7 @@ namespace Proyecto_V4.Models
         public Branch()
         {
             this.Departments = new HashSet<Department>();
+            this.Employees = new HashSet<Employee>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace Proyecto_V4.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Department> Departments { get; set; }
         public virtual HardwareStore HardwareStore { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

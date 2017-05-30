@@ -24,7 +24,7 @@ namespace Proyecto_V4.Models
             this.Warnings = new HashSet<Warning>();
         }
     
-        public string HireDate { get; set; }
+        public System.DateTime HireDate { get; set; }
         public string YearlyVacationDays { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -37,5 +37,6 @@ namespace Proyecto_V4.Models
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Warning> Warnings { get; set; }
+        public virtual Branch Branch { get; set; }
     }
 }
